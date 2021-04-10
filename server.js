@@ -1,6 +1,8 @@
 const express = require('express')
 const morgan = require('morgan')
 const campsiteRouter = require('./routes/campsiteRouter')
+const promotionRouter = require('./routes/promotionRouter')
+const partnerRouter = require('./routes/partnerRouter')
 
 const hostname = 'localhost'
 const port = 3000
@@ -10,26 +12,8 @@ app.use(morgan('dev'))
 app.use(express.json())
 
 app.use('/campsites', campsiteRouter)
-
-// app.get('/campsites/:campsiteId', (req, res) => {
-//   res.end(`Will send details of the campsite ${req.params.campsiteId} to you`)
-// })
-
-// app.post('/campsites/:campsiteId', (req, res) => {
-//   res.statusCode = 403
-//   res.end(`POST operation not supported on /campsites/${req.params.campsiteId}`)
-// })
-
-// app.put('/campsites/:campsiteId', (req, res) => {
-//   res.write(`Updating the campsite: ${req.params.campsiteId}\n`)
-//   res.end(
-//     `Will update the campsite: ${req.body.name} with description: ${req.body.description}`
-//   )
-// })
-
-// app.delete('/campsites/:campsiteId', (req, res) => {
-//   res.end(`Deleting campsite: ${req.params.campsiteId}`)
-// })
+app.use('/promotions', promotionRouter)
+app.use('/partners', partnerRouter)
 
 app.use(express.static(__dirname + '/public'))
 
